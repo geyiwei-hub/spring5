@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- 配置User对象创建 -->
+  <bean id="user" class="com.antherd.spring5.User"></bean>
+
+  <!-- 2 set方法注入属性 -->
+  <bean id="book" class="com.antherd.spring5.Book">
+    <!-- 使用property完成属性注入
+          name：类里面属性名称
+          value：向属性注入的值
+     -->
+    <property name="bname" value="易筋经"></property>
+    <property name="bauther" value="达摩老祖"></property>
+    <!-- 设置null值 -->
+<!--    <property name="address">-->
+<!--      <null></null>-->
+<!--    </property>-->
+    <!-- 属性值包含特殊符号 value="<<南京>>"
+      1 把<>进行转义 lt; gt;
+      2 把带特殊符号内容写到CDATA
+    -->
+    <property name="address">
+      <value><![CDATA[<<南京>>]]></value>
+    </property>
+  </bean>
+
+  <!-- 3 有参数构造注入属性 -->
+  <bean id="orders" class="com.antherd.spring5.Orders">
+    <constructor-arg name="oname" value="电脑"/>
+    <constructor-arg name="address" value="China"/>
+  </bean>
+
+  <!-- 4 bean标签内属性注入 -->
+<!--  <bean id="book" class="com.antherd.spring5.Book" p:bname="九阳神功" p:bauther="无名氏">-->
+<!--  </bean>-->
+</beans>
